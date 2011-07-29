@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load getblog %}
+
+{% block title %}{{ object.title }}{% endblock %}
+{% block meta-title %}{{ object.title }}{% endblock %}
+{% block meta-keywords %}{{ object.meta_keywords }}{% endblock %}
+{% block meta-description %}{{ object.meta_description }}{% endblock %}
+
+
+{% block botonera-servicios %}
+	<div id="contBotoneraServicios">
+		<div id="btnCertificaciones" class="btnServiciosActual"><a href="/servicios/certificaciones#tituloSeccion"><p><span class="tituloHomeGrande">CERTIFICACIONES</span></p></a></div>
+		<div id="btnLicencias"><a href="/servicios/licencias-no-automaticas#tituloSeccion"><p><span class="tituloHomeGrande">LICENCIAS</span> NO AUTOM&Aacute;TICAS</p></a></div>
+		<div id="btnOtras"><a href="/servicios/otros-servicios#tituloSeccion"><p><span class="tituloHomeGrande">OTROS</span> SERVICIOS</p></a></div>
+	</div>
+{% endblock %}
+
+{% block navbar %}
+	<ul>
+		<li><a href="/">Home</a></li>
+		<li><a href="/page/quienes-somos">Qui&eacute;nes somos</li>
+		<li class="seccionActual">Servicios</li>
+		<li><a href="/blog">Blog</a></li>
+		<li><a href="/novedades">Novedades</a></li>
+		<li><a href="/contact">Contacto</a></li>
+	</ul>
+{% endblock %}
+
+{% block footer-nav %}
+    <li><a href="/">Home</a></li>
+    <li><a href="/page/quienes-somos">Qui&eacute;nes somos</li>
+    <li class="seccionActual">Servicios</li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/novedades">Novedades</a></li>
+    <li><a href="/contact">Contacto</a></li>
+{% endblock %}
+
+{% block headerclass %}headerServicios{% endblock %}
+
+{% block titulo-seccion %}Servicios{% endblock%}
+
+{% block bottom-header %}{% endblock %}
+
+{% block subheader %}
+	<div id="contBotoneraServicios">
+		<div id="btnCertificaciones" class="btnServiciosActual"><a href="/servicios/certificaciones#tituloSeccion"><p><span class="tituloHomeGrande">CERTIFICACIONES</span></p></a></div>
+		<div id="btnLicencias"><a href="/servicios/licencias-no-automaticas#tituloSeccion"><p><span class="tituloHomeGrande">LICENCIAS</span> NO AUTOM&Aacute;TICAS</p></a></div>
+		<div id="btnOtras"><a href="/servicios/otros-servicios#tituloSeccion"><p><span class="tituloHomeGrande">OTROS</span> SERVICIOS</p></a></div>
+	</div>
+	{# include '_botonera_media.html' #}
+{% endblock %}
+
+{% block javascript %}
+	$(function(){
+	{% with object as certificado %}
+		$('#{{ certificado.slug }}').addClass('serviciosCertificacionesActual');
+	{% endwith %}
+	});
+	{% include '_JSformularioContacto.html' %}
+{% endblock %}
+
+{% block main %}
+<div id="contServicios">
+
+    <div id="colIzqServicios">
+	    <ul>
+		    {% block certificados %}
+			    {% get_latest_category_posts certificaciones norecursive as certificados %}
+			    {% for certificado in certificados %}
+				    <li id="{{ certificado.slug }}" class="certListItems"> <a href="{{ certificado.get_absolute_url }}#tituloSeccion">{{ certificado.title }}</a></li>
+			    {% empty %}
+				    <li><a href="{{ certificado.get_absolute_url }}">No hay certificados</a></li>
+			    {% endfor %}
+		    {% endblock certificados%}
+	    </ul>
+    </div>
+
+    <div id="colDerServicios">
+        <div id="contenidoServicios" class="contCertificaciones">
+            <img src="{{ config.MEDIA_URL }}img/servicios_flecha_certificaciones.png" width="8" height="21" alt="flechas" class="flechaCertificaciones">
+            {% with object as certificado %}
+
+				{% comment %}
+	            {% with certificado.get_first_image as media %}
+	            {% if media %}
+	            <img src="{{ config.MEDIA_URL }}img/servicios_imagen_falsa.png" width="182" height="182" alt="Puzzle" class="imgServicios"/>
+	            {% endif %}
+	            {% endwith %}
+				{% endcomment %}
+
+	            <p class="serviciosTituloTexto">{{ certificado.title }}</p>
+	            <p class="serviciosBajada">{{ certificado.copete }}</p>
+	            <div class="blogTextoPost">
+		            {{ certificado.content|safe }}
+	            </div>
+				<script>
+					$(function(){
+						$('.flechaCertificaciones').offset({'top':$('#{{ certificado.slug|lower }}').offset().top})
+					})
+				</script>
+
+            {% endwith %}
+        </div>
+		{% include '_formContact.html' %}
+    </div>
+</div>
+{% endblock main %}
+
+
+

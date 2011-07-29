@@ -1,0 +1,91 @@
+		{% load getblog %}
+        <div id="colBlog">
+				{% get_latest_blog_posts as posts  %}
+
+				{% with posts|first as post %}
+      			<div id="ultimoPostHome">
+                	<p class="blogFechaPost">{{ post.publication_date|date:"j F, Y" }}</p>
+                	<p class="blogTituloPost"><a href="{{ post.get_absolute_url }}" class="linkTituloPost">{{ post.title }}</a></p>
+			<div class="imgUltimoPost">
+<!--
+                	<img src="{{ config.MEDIA_URL }}img/home_ultimo_post.jpg" width="100%" height="100%" title="{{ post.title }}" alt="{{ post.content|truncatewords:60 }}" />
+-->
+			</div>
+                	<p class="blogTextoPost">{{ post.content|truncatewords:60 }}</p>
+                	<p class="blogLinksPost">
+						<a href="{{ post.get_absolute_url }}" class="linkRelPost">
+							Leer m&aacute;s 
+							<img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.jpg" width="7" height="12" alt="Leer Mas" class="imgLeermas"/>
+						</a>
+					</p>
+                </div>
+				{% endwith %}
+
+            <div id="postRecientestHome">
+				{% for post in posts|slice:"0:4" %}
+					{% with post.get_first_image as media %}
+					<div class="cajasPostRecientes postActual" style="background:url({{ media.content.url }}) no-repeat #FFF;">
+						<img
+							src="{{ media.content.url }}"
+							date="{{ post.publication_date|date:"j F, Y" }}" 
+							alt="{{ post.get_absolute_url }}" 
+							title="{{ post.title }}" 
+							rel="{{ post.content|truncatewords:40|striptags }}" 
+							class="imgModelo" 
+							style="display:none;" 
+						/>
+		       	    	<div class="iconoDestacado"></div>
+		                <div class="bajadaPostRecientes">
+		                    <p>{{ post.title }}</p>
+		                </div>
+		            </div>
+					{% endwith %}
+				{% empty %}
+
+				{% endfor %}
+            </div>
+        </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(function(){
+        $('.cajasPostRecientes').hover(
+			function () {
+				destacar( $(this) );
+			},
+			function  () {
+				
+			}
+		);
+		destacar($('.cajasPostRecientes:first'))
+	})
+	function destacar(div)
+	{
+
+		$('#postRecientestHome').find('.iconoDestacado, .bajadaPostRecientes').remove();
+
+		$(div).prepend(
+			'<A href="'+ getAttrValue(div,'.imgModelo:first','alt') +'"><div class="iconoDestacado"></div>'+
+			'<div class="bajadaPostRecientes">'+
+			'	<p class="desperado"> '+  getAttrValue(div,'.imgModelo:first','title') + '</p>' +
+			'</div>'
+		)
+
+		$("#ultimoPostHome .linkTituloPost").attr( 'href' , getAttrValue(div,'.imgModelo:first','alt' ) );
+		$("#ultimoPostHome .blogFechaPost").html( getAttrValue(div,'.imgModelo:first','date' ) );
+		$("#ultimoPostHome .linkTituloPost").html( getAttrValue(div,'.imgModelo:first','title' ) );
+		$("#ultimoPostHome .blogTextoPost").html( getAttrValue(div,'.imgModelo:first','rel' ) );
+		$("#ultimoPostHome .linkRelPost").attr( 'href' , getAttrValue(div,'.imgModelo:first','alt' ) );
+
+//		$("#ultimoPostHome .imgUltimoPost img").attr( 'src' , getAttrValue(div,'.imgModelo:first','src' ) )
+
+		$("#ultimoPostHome .imgUltimoPost").attr(
+			'style' , 'background-image: url(' + getAttrValue( div , '.imgModelo:first' , 'src' ) + ');background-position:center;'
+		);
+
+	}
+	function getAttrValue(dom,elem,attr){return $(dom).find(elem).attr(attr)}
+	function setElemValue(find,value){return $(find).html(value)};
+})
+
+</script>

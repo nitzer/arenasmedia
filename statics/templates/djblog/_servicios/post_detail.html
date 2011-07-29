@@ -1,0 +1,53 @@
+{% extends 'djblog/base.html' %}
+
+{% url contact %}
+
+{% block title %}{{ object.title }}{% endblock %}
+{% block meta-keywords %}{{ object.meta_keywords }}{% endblock %}
+{% block meta-description %}{{ object.meta_description }}{% endblock %}
+{% block extra-head %}
+
+{{ block.super }}
+<link rel="alternate" type="application/rss+xml" title="Blog RSS Feed" href="" />
+<script type="text/javascript" src="{{ config.MEDIA_URL }}js/jquery.lightbox-0.5.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ config.MEDIA_URL }}css/jquery.lightbox-0.5.css" media="screen" />
+{% endblock %}
+
+{% block content %}
+
+<div id="blogPost">
+	<p class="blogFechaPost">{{ object.publication_date|date:"j F, Y" }}</p>
+	<p class="blogTituloPost"><a href="#" class="linkTituloPost">{{ object.title }}</a></p>
+    {% with object.get_first_image as media %}
+    {% if media.content %}
+		<img src="{{ media.content.url }}" width="273" height="167" alt="Hierro" class="imgPost" title="{{ media.title }}" alt="{{ media.description }}"/>
+    {% endif %}
+    {% endwith %}
+
+	<div class="blogTextoPost">
+		{{ certificado.content|safe }}
+	</div>
+
+	<div class="blogLinks">
+        <p class="blogLinksPost"><a href="#" class="linkRelPost">56 comentarios</a> | Dej&aacute; tu comentario! </p> 
+        <div class="blogLinkSociales">
+			<div class="linkTw">4</div>
+			<img src="{{ config.MEDIA_URL }}img/bloglinks_fb.jpg" width="70" height="26" alt="Share" class="imgLinkSociales imgLink"/>
+			<p class="{{ config.MEDIA_URL }}imgLinkSociales">30</p>
+			<img src="{{ config.MEDIA_URL }}img/bloglinks_fb_like.jpg" width="84" height="26" alt="Te gusta" class="imgLinkSociales imgLink"/>
+         </div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+{% with object as obj %}
+$(function(){
+	$('#{{ obj.slug }}').addClass('serviciosOtrosActual');
+});
+{% endwith %}
+
+{% endblock %}
+
+

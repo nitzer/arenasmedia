@@ -1,0 +1,23 @@
+{% load getblog %}
+
+
+	{% include "_latest_post.html"  %}
+	{% include "_trabajamos_home.html"  %}
+	{% comment %}
+        <div id="blokCliente">
+			<script type="text/javascript" src="{{ config.MEDIA_URL }}js/jquery.carousel.min.js"></script>
+			<div id="contClientes">
+                <div class="slideLogos">
+				    <ul>
+						{% render_block 'lista-clientes' %}
+				    </ul>
+				</div>
+			</div>
+			<script type="text/javascript">
+				$(function(){
+					$("div.slideLogos").carousel( { dispItems: 3 } );
+				});
+			</script>
+		</div>
+
+	{% endcomment %}

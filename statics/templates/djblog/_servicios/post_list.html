@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block botonera-servicios %}
+	<div id="contBotoneraServicios">
+		<div id="btnCertificaciones" class="btnServiciosActual"><a href="/servicios/certificaciones"><p><span class="tituloHomeGrande">CERTIFICACIONES</span></p></a></div>
+		<div id="btnLicencias"><a href="/servicios/licencias-no-automaticas"><p><span class="tituloHomeGrande">LICENCIAS</span> NO AUTOM&Aacute;TICAS</p></a></div>
+		<div id="btnOtras"><a href="/servicios/otros-servicios"><p><span class="tituloHomeGrande">OTROS</span> SERVICIOS</p></a></div>
+	</div>
+{% endblock %}
+
+{% block botonera-media %}
+	{% include '_botonera_media.html' %}
+{% endblock %}
+
+{% block content %}
+{% with object as certificado %}
+	{% with certificado.get_first_image as media %}
+	{% if media %}
+	<img src="{{ config.MEDIA_URL }}img/servicios_imagen_falsa.png" width="182" height="182" alt="Puzzle" class="imgServicios"/>
+	{% endif %}
+	{% endwith %}
+	<p class="serviciosTituloTexto">{{ certificado.title }}</p>
+	<p class="serviciosBajada">{{ certificado.copete }}</p>
+	<p class="blogTextoPost">
+		{{ certificado.content }}
+	</p>
+{% endwith %}
+
+{% endblock content %}
+
+{% block javascript %}
+{% with object as obj %}
+$(function(){
+	$('#{{ obj.slug }}').addClass('contImgServiciosActual');
+});
+{% endwith %}
+
+{% endblock %}

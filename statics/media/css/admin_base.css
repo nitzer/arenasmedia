@@ -1,0 +1,100 @@
+body, td, textarea, input, select { font-family:"Lucida Grande",Verdana,Arial,"Bitstream Vera Sans",sans-serif; 
+    font-size:13px;
+}
+
+a, a:hover, a:active { outline:0 }
+
+#header {background:#464646; color:#fff; overflow:visible !important;}
+.module caption { background:none }
+.module > h2, .module caption a, .inline-group h2 { display:block; line-height:30px; font-weight:700; padding-right:30px; 
+    background: url('/media/img/admin/application-default-icon.png') no-repeat right; height:30px; color:#555; font-size:16px;}
+
+fieldset.collapsed h2 { background:none !important }
+
+.dashboard .module caption a { background: url('/media/img/admin/user-desktop.png') no-repeat right;color:#555 }
+.auth-administration .module caption a, .dashboard .auth-administration caption a { background: url('/media/img/admin/system-users.png') no-repeat right; }
+.cuenta-administration .module caption a, .dashboard .cuenta-administration caption a { background: url('/media/img/admin/preferences-users.png') no-repeat right; }
+.promo-administration .module caption a, .dashboard .promo-administration caption a { background: url('/media/img/admin/promo.png') no-repeat right; }
+.sites-administration .module caption a, .dashboard .sites-administration caption a { background: url('/media/img/admin/sites.png') no-repeat right; }
+
+
+
+#content-related { margin:0 0 0 -230px; width:230px; float:left }
+#content-related .module h2 { background:#909090; color:#fff }
+
+.dashboard #content { min-width:900px; width:auto; margin:10px!important }
+#content-main { margin:0px 210px 0 170px; width:auto}
+.flex #content-main { margin:0 0 0 170px; width:auto; min-width:500px }
+.login #content-main { margin:0px auto; width:auto}
+
+#branding { padding:10px !important; }
+#branding h1 { color:#fff; font-weight:700; margin:0 !important; font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif; text-transform:capitalize }
+div.breadcrumbs { padding:15px 8px 5px; }
+
+.addlink { background: url(/media/img/admin/add.png) no-repeat; padding-bottom:3px; padding-left:20px}
+.changelink { background: url(/media/img/admin/pencil.png) no-repeat; padding-bottom:3px; padding-left:20px}
+.deletelink { background: url(/media/img/admin/delete.png) no-repeat; padding-bottom:3px; padding-left:20px}
+.submit-row .deletelink, .deletelink { background: url(/media/img/admin/delete.png) no-repeat !important; padding-bottom:3px !important; padding-left:20px !important}
+
+.row1 {background:#e0e0e0}
+
+.button, input[type="submit"], input[type="button"], .submit-row input {
+background:white url(/media/img/admin/nav-bg.gif) repeat-x scroll center bottom;
+border-color:#DDDDDD #AAAAAA #AAAAAA #DDDDDD;
+border-style:solid;
+border-width:1px;
+color:black;
+padding:3px;
+}
+
+
+#nav a, #nav a:visited { color:#555 }
+#nav a:hover { color:#333 }
+
+#nav { float: left; width:150px; margin:0 -170px 0 0; padding:0}
+#nav li { list-style:none; margin:5px 0 }
+
+#nav > li, .module { margin:5px 0; padding:5px; background:#eee; 
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-bottom-radius: 5px;
+    border:1px solid #ccc;
+}
+
+#nav > li > a { display:block; line-height:30px; font-weight:700; padding-right:30px; 
+    background: url('/media/img/admin/application-default-icon.png') no-repeat right; height:30px;}
+
+#nav ul { padding:0 5px; border-top:1px solid #ccc; }
+
+#nav > li.dashboard > a { background: url('/media/img/admin/user-desktop.png') no-repeat right; }
+#nav > li.auth-administration > a { background: url('/media/img/admin/system-users.png') no-repeat right; }
+#nav > li.cuenta-administration > a { background: url('/media/img/admin/preferences-users.png') no-repeat right; }
+#nav > li.promo-administration > a { background: url('/media/img/admin/promo.png') no-repeat right; }
+#nav > li.sites-administration > a { background: url('/media/img/admin/sites.png') no-repeat right; }
+
+#nav > li .addlink { display:none; padding-left:13px }
+#nav .over .addlink { display:block }
+
+#content-related #recent-actions-module > h2 { display:block; line-height:30px; font-weight:700; padding-left:40px; background: #909090 url('/media/img/admin/logviewer.png') no-repeat 5px 50%; height:30px; }
+
+/* login */
+
+.login #container {
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-bottom-radius: 5px;
+}
+
+.login #header {
+-webkit-border-top-right-radius: 5px;
+-webkit-border-top-left-radius: 5px;
+-moz-border-radius-topright: 5px;
+-moz-border-radius-topleft: 5px;
+border-top-right-radius: 5px;
+border-top-left-radius: 5px;
+}
+
+.login #login-form .form-row input { border:solid 2px #ddd; padding:5px 2px }
+
+/* wysiwyg */
+textarea.wysiwyg { float:left; margin-left: 8.1em }

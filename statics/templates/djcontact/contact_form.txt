@@ -1,0 +1,6 @@
+contact_form
+
+site: {{ site }}
+name: {{ name }}
+email: {{ email }}
+body: {{ body }}

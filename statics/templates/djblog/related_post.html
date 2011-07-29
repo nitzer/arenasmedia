@@ -1,0 +1,32 @@
+<div id="related_post">
+    <ul id="posts_list" class="related">
+    {% for object in object_list %}
+        <li class="ma15b pd10b bsa bw1 bdb cl oh tv" id="article_{{ object.id }}">
+
+        <div class="fl img">
+        {% with object.get_first_image as media %}
+        <a href="{{ object.get_absolute_url }}" title="{{ media.caption }}" class="db nu">
+            <img src="{% if media.content %}{{ media.content.url }}{% else %}{{ config.MEDIA_URL }}img/Metro_Logo.gif{% endif %}" title="{{ media.title }}" alt="{{ media.description }}" />
+        </a>
+        {% endwith %}
+        </div>
+        
+        <div class="fl content">
+            <p class="oh">
+                <b class="fsz120"><a href="{{ object.get_absolute_url }}" title="Ver nota" class="c16 nu">{{ object.title }}</a></b><br />
+                <b>{{ oject.copete }}</b> {{ object.preview_content|truncatewords:'35' }}
+            </p>
+
+            {% comment %}
+            <div class="quiet pd5 cl ma15t">
+                <span>{% with object.publication_date as date %}{{ date|date:"j" }} de {{ date|date:"F, Y" }}{% endwith %}</span> 
+                {% if object.category.all|length >= 1 %}
+                <span>Categoría: {% for c in object.category.all %}<a href="{{ c.get_absolute_url }}">{{ c.name }}</a> {% endfor %}</span>
+                {% endif %}
+            </div>
+            {% endcomment %}
+        </div>
+    </li>
+    {% endfor %}
+    </ul>
+</div>

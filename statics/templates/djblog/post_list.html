@@ -1,0 +1,79 @@
+{% extends 'djblog/base.html' %}
+
+{% block title %}{{ object.title }}{% endblock %}
+{% block meta-title %}{{ object.title }}{% endblock %}
+{% block meta-keywords %}{{ object.meta_keywords }}{% endblock %}
+{% block meta-description %}{{ object.meta_description }}{% endblock %}
+
+
+{% block premain %}
+	{% with object_list|first as object %}
+		{% include 'djblog/_latest.html' %}
+	{% endwith %}
+{% endblock %}
+
+{% block content %}
+
+{% if object_list %}
+
+				{% for post in object_list|slice:"1:" %}
+		            <div class="postListado">
+		                <p class="blogFechaPost">{% with post.publication_date as date %}{{ date|date:"j" }} de {{ date|date:"F, Y" }}{% endwith %}</p>
+		                <p class="blogTituloPost"><a href="{{ SITE_URL }}{{ post.get_absolute_url }}" class="linkTituloPost">{{ post.title }}</a></p>
+				{% with post.get_first_image as media %}
+					{% if media %}
+		                <img src="{{ media.content.url }}" width="273" height="167" alt="Hierro" class="imgListadoBlog"/>
+					{% else %}
+						<img src="{{ config.MEDIA_URL }}img/default.jpg" width="273" height="167" alt="Hierro" class="imgListadoBlog"/>
+					{% endif %}
+		        {% endwith %}
+
+		                <div class="textoListado">
+		                    <p class="blogLinksPost blogLinksListado"><a href="{{ post.get_absolute_url }}#disqus_thread" data-disqus-identifier="{{ post.slug }}" class="linkRelPost">Leer m&aacute;s <img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt="Leer Mas" class="imgLeermas"/></a></p>
+
+		                    <div class="blogLinkSocialesListado">
+
+								<div class="linkTws" style="float:left;">
+								<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siqat.arkad1a.com.ar/{{ post.get_absolute_url }}" 
+									data-count="horizontal" data-via="siqat">Tweet</a>
+								<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+								</div>
+
+								<iframe src="http://www.facebook.com/plugins/like.php?href=http://siqat.arkad1a.com.ar/{{ post.get_absolute_url }}&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;colorscheme=light&amp;height=21" 
+									scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+
+		                    </div>
+		                    <p class="blogTextoPost">
+							{{ post.preview_content|safe }}
+							</p>
+		                    <p class="blogLinksPost"><a href="{{ post.get_absolute_url }}" class="linkRelPost">Leer m&aacute;s <img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt="Leer Mas" class="imgLeermas"/></a></p> 
+		                </div>
+		    		</div>
+				{% endfor %}
+	
+{% endif %}
+
+<script>
+        {% if search_q %}
+        $('.post').highlight("{{ search_q }}");
+        {% endif %}
+</script>
+
+
+{% include '_paginator.html' %}
+
+{% endblock %}
+
+{% block javascript %}
+{{ block.super }}
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'arkad1adevel'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+{% endblock %}

@@ -1,0 +1,25 @@
+{% load getblog %}
+{% get_latest_category_posts resoluciones norecursive as res_object_list %}
+
+	<div id="blokResoluciones">
+	{% with res_object_list|first as res  %}
+		{{ res.media.content }}
+		<div id="textoUltimaRes">
+			<p class="tituloHome">
+				<span class="tituloHomeGrande">&Uacute;LTIMA</span> RESOLUCI&Oacute;N
+			</p>
+			<p class="bajadaUltimasRes">
+				<a href="{{ res.get_absolute_url }}">{{ res.title|truncatewords:40 }}<a> - {{ res.preview_content|truncatewords:15 }}
+				<B><a href="{{ res.get_absolute_url }}">Seguir leyendo >></a></B>
+			</p>
+		</div>
+
+		<div id="botonUltimaRes">
+			<p class="textoDescargar">
+				<a href="/novedades/" class="linkGris">
+					<b>Leer todas <img src="{{ config.MEDIA_URL }}img/boton_descargar.png" width="21" height="23" alt="Descargar Resoluci&oacute;n" class="botonDescargar"/></b>
+				</a>
+			</p>
+		</div>
+	{% endwith %}
+	</div>

@@ -1,0 +1,19 @@
+{% load getblog %}
+{% get_latest_category_posts otros-servicios norecursive as servicios %}
+					<div id="botoneraMedia">
+						<ul>
+							{% for servicio in servicios %}
+                            <li id="{{ servicio.slug }}"><a href="{{ servicio.get_absolute_url }}#tituloSeccion"><img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt=" " class="imgBtnSecciones"/>{{ servicio.title }}</a></li>
+							{% empty %}
+                        	<li><a href="#"><img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt=" " class="imgBtnSecciones"/>no hay realmente</a></li>
+                            <li><a href="#"><img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt=" " class="imgBtnSecciones"/>Tramitaciones ante ANMAT</a></li>
+                            <li><a href="#"><img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt=" " class="imgBtnSecciones"/>Certificación CE (Comunidad Europea)</a></li>
+                            <li><a href="#"><img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt=" " class="imgBtnSecciones"/>Calificación de proovedores</a></li>
+                            <li><a href="#"><img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt=" " class="imgBtnSecciones"/>Inspecciones nacionales e internacionales.</a></li>
+                            <li><a href="#"><img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt=" " class="imgBtnSecciones"/>Inspecciones Pre-Embarques.</a></li>
+                            <li><a href="#"><img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt=" " class="imgBtnSecciones"/>Ensayos previos de laboratorio.</a></li>
+                            <li><a href="#"><img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt=" " class="imgBtnSecciones"/>Departamento de Legales.</a></li>
+							{% endfor %}
+						</ul>
+               	 	</div>
+

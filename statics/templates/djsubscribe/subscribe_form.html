@@ -1,0 +1,10 @@
+
+<div id="subscribeCol" class="cajasColDer">
+	<p>Suscribase y recibir&aacute; actualizacion sobre las Resoluciones</p>
+	<form action="/djsubscribe/pre" method="post">{% csrf_token %}
+	<div>
+		<input type="text" class="djsubscribeForm djsubscribeFormEmail" name="email" />
+		<input type="submit" class="botonAzulChico" value="Enviar" />
+	</div>
+	</form>
+</div>

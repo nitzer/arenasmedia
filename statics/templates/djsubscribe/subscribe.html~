@@ -1,0 +1,65 @@
+{% extends 'djblog/base.html' %}
+
+{% block subheader %}
+            <div id="tituloSeccion">
+                <p class="tituloSeccion">Contacte a SIQAT </p>
+            </div>
+{% endblock %}
+
+{% block navbar %}
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/page/quienes-somos">Qui&eacute;nes somos</a></li>
+                <li><a href="/servicios/certificaciones">Servicios</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/novedades">Novedades</a></li>
+                <li class="seccionActual">Contacto</li>
+             </ul>
+{% endblock navbar %}
+
+{% block headerclass %}headerContacto{% endblock %}
+
+{% block titulo-seccion %}Contacto{% endblock%}
+
+
+
+{% block content %}
+				<div id="formConsultas">
+					<form class="consultaForm" action="{% url contact_form %}" method="POST">
+						{% csrf_token %}
+						<p class="texts">
+							<label for="id_name">Nombre y apellido:</label>
+							{{ form.name }}
+						</p>
+
+						<p class="texts">
+						<label for="id_email">Email:</label>
+							{{ form.email }}
+						</p>
+
+						<p class="texts">
+							<label for="id_body">Consulta:</label>
+							{{ form.body }}
+						</p>
+						<div class="captcha">
+							<p>
+							<label for="id_body">Seguridad:</label>
+							{{ form.captcha }}
+							</p>
+							<br clear="all">
+						</div>
+						<p>
+							<label for="id_submit">&nbsp</label>
+							<input id="id_submit" class="botonAzulChico" type="submit" value="Enviar" />
+						</p>
+					</form>
+				<script src="{{ config.MEDIA_URL }}js/jquery.formValidator.js" type="text/javascript" language="javascript" charset="utf-8"></script>
+			</div>
+{% endblock content %}
+
+{% block columna-derecha %}
+	{% render_block 'sidebar-contacto' %}
+{% endblock %}
+
+
+

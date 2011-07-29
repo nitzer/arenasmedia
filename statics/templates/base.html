@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link REL="SHORTCUT ICON" HREF="{{ config.MEDIA_URL }}img/favicon.ico" />
+
+	<title>{% block title %}ArenasMedia : PEOPLE : PASSION : PERFORMANCE{% endblock %}</title>
+	<link rel='stylesheet' type='text/css' href="{{ config.MEDIA_URL }}css/arenasmedia.css" />
+
+	<meta name="title" lang="es" title="{% block meta-title %}ArenasMedia : PEOPLE : PASSION : PERFORMANCE{% endblock %}" />
+	<meta name="keywords" lang="es" content="{% block meta-keywords %}ArenasMedia META-KEYWORDS{% endblock %}" />
+	<meta name="description" lang="es" content="{% block meta-description %}ArenasMedia META-DESCRIPTION{% endblock %}">
+
+	{% block requiered-js %}
+	<script type="text/javascript" src="{{ config.MEDIA_URL }}js/jquery-1.5.1.min.js"></script>
+	<script type="text/javascript" src="{{ config.MEDIA_URL }}js/menu.js"></script>
+	<script type="text/javascript" src="{{ config.MEDIA_URL }}js/carousel.js"></script>
+	<script type="text/javascript" src="{{ config.MEDIA_URL }}js/carousel_init.js"></script>
+	{% endblock %}
+
+	{% block extra-head %}
+
+	{% endblock %}
+	
+	{% block javascript %}
+	{% endblock %}
+</head>
+
+<body>
+	<div id="wrapper"> 
+	{% include '_header.html' %}
+		<div id="contenido"> 
+		{% block main %}
+			{% include '_home.html' %}
+		{% endblock main %}
+		</div>
+	</div>
+	{% include '_footer.html' %}
+</body>
+
+</html>

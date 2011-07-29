@@ -1,0 +1,35 @@
+{% load getblog %}
+{% get_latest_category_posts trabajamos-con norecursive as organismos %}
+<div id="colTrabajamos">
+	<div id="contTituloTrabajamos"><p class="TituloTrabajamos">Trabajamos con</p></div>
+
+	<div id="ContentTrabajamos">
+
+		<!-- scrollable -->
+		<div class="scrollable">
+
+			<!-- items -->
+
+			<div class="items">
+				{% render_block 'trabajamos-con' %}
+			</div>
+			<!-- /items -->
+
+		</div>
+		<!-- /scrollable -->
+	</div>
+</div>
+
+<script>
+	$(function(){
+		$(".scrollable .items").jwSlider({
+			transition : 'slide',
+			speed : 200,
+			pause : 8000
+		});
+	})
+</script>
+
+
+
+

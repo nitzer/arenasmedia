@@ -1,0 +1,8 @@
+<!-- search form -->
+<div class="ma10b bg20 c11 bss bw1 oh fsz120" id="searchform">
+    <form action="{% url djblog_search %}" method="GET">
+        {#% csrf_token %#}
+    <input type="text" name="q" class="bdn fl w75 pd5" />
+    <input type="submit" class="bg16 c11 fr w20 pd5" value="Buscar" />
+    </form>
+</div>

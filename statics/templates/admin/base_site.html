@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="/media/css/admin_base.css" />
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<script type="text/javascript" src="/media/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){ $('body').addClass('{{ title|slugify }}') });
+</script>
+{% endblock %}
+
+{% block branding %}
+<a href="{{ root_path }}"><h1 id="site-name">{{ config.PROJECT_NAME }} {% trans 'administration' %}</h1></a>
+{% endblock %}
+
+{% block nav-global %}
+{% include "admin/nav_global.html" %}
+{% endblock %}

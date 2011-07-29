@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load getblog %}
+
+	{% block title %}Arenas Media ~ Clientes{% endblock title %}
+
+	{% block main %}
+	<!---ACA EMPIEZA EL BLOKE CLIENTES--->
+        <div id="blokClientes" class="colTriple">
+        	<div class="contTitulo"><h2><span>Nuestros Clientes:</span></h2></div>
+       		<img src="../media/img/borrar_clientes.png" width="849" height="136" style="margin: 25px 0px 50px 50px;"/>
+        </div>
+        <!---ACA TERMINA EL BLOKE CLIENTES--->
+        
+        <!---ACA EMPIEZA EL BLOKE Casos de exitos y pasión--->
+        <div id="blokCasosExito" class="colTriple">
+			<div class="contTitulo"><h2><span>Casos de exitos y pasión</span></h2></div>
+
+			{% get_latest_category_posts clientes norecursive as clientes %}
+		    {% with clientes|first as cliente %}
+            <div class="entradaColDoble">
+				<img src="../media/img/imgTamanio1.jpg" width="425" height="150" class="imgEntradas"/>
+				<p class="notaTituloDestacado">{{ cliente.title }}</p>
+                <p class="notaBajadaDestacado">{{ cliente.copete|safe }}</p>
+                <p class="btnContinuar">
+                	<a href="{{ cliente.get_absolute_url }}">CONTINUAR <img src="../media/img/flechaAdelante.png" width="11" height="11" at="CONTINUAR LEYENDO"/></a>
+                </p>
+			</div>
+	        {% endwith %}
+         
+			{% for cliente in clientes|slice:"0:2" %}
+			<div class="entradaColSimple">
+                <img src="../media/img/imgTamanio2.jpg" width="200" height="150" class="imgEntradas"/>
+                <p class="notaTitulo">{{ cliente.title }}</p>
+                <p class="notaBajada">{{ cliente.copete }}</p>
+                <p class="btnContinuar">
+                	<a href="{{ cliente.get_absolute_url }}">CONTINUAR <img src="../media/img/flechaAdelante.png" width="11" height="11" at="CONTINUAR LEYENDO"/></a>
+                </p>
+			</div>
+			{% empty %}
+
+			{% endfor %}
+        </div>
+        <!---ACA TERMINA EL BLOKE Casos de exitos y pasión--->
+
+        <!---ACA EMPIEZA EL BLOKE Te contactamos Arenas Media--->
+        <div id="blokCasosExito" class="colTriple">
+			<div class="contTitulo"><h2><span>Te contactamos Arenas Media</span></h2></div>
+
+			{% get_latest_category_posts tecontactamos norecursive as items %}
+			{% for item in items %}
+			<div class="entradaColSimple">
+                <img src="../media/img/imgTamanio2.jpg" width="200" height="150" class="imgEntradas"/>
+                <p class="notaTitulo">{{ item.title }}</p>
+                <p class="notaBajada">{{ item.copete }}</p>
+                <p class="btnContinuar">
+                	<a href="{{ item.get_absolute_url }}">CONTINUAR <img src="../media/img/flechaAdelante.png" width="11" height="11" at="CONTINUAR LEYENDO"/></a>
+                </p>
+			</div>
+			{% empty %}
+			{% endfor %}
+            
+        </div>
+        <!---ACA TERMINA EL BLOKE Te contactamos Arenas Media--->
+	{% endblock main %}

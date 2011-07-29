@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load getblog %}
+
+{% block title %}Arenas Media ~ Clientes{% endblock title %}
+
+	{% block main %}
+        <div id="blokSoluciones" class="colTriple">
+        	<div class="contTitulo"><h2><span>Soluciones Arena</span></h2></div>
+			{% render_block 'soluciones_arena' %}
+        </div>
+        <!---ACA TERMINA EL BLOKE SOLUCIONES ARENA --->
+
+        <!---ACA EMPIEZA EL BLOKE  DESARROLLOS ARENA--->
+
+        <div id="blokSoluciones" class="colTriple">
+	       	<div class="contTitulo"><h2><span>Desarrollos Arena</span></h2></div>
+			{% get_latest_category_posts servicios norecursive as items %}
+			{% with items|first as item %}
+		        {% with item.get_first_image as media %}
+				    {% if media %}
+				    <img src="{{ config.MEDIA_URL }}img/servicios_imagen_falsa.png" width="182" height="182" alt="Puzzle" class="imgServicios"/>
+				    {% endif %}
+		        {% endwith %}
+		        <div class="entradaColTripleDestacado">
+					<div class="contEntradaDesarrollosDestacado">
+		                    <p class="notaTituloDestacado">{{ item.title }}</p>
+		                    <p class="notaBajadaDestacado">{{ item.copete }}</p>
+		                    <p class="btnContinuar"><a href="{{ item.get_absolute_url }}">DESCARGAR <img src="../media/img/flechaAbajo.png" width="11" height="11" at="DESCARGAR ARCHIVO"/></a></p>
+		           	</div>
+					<img src="../media/img/imgTamanio1.jpg" width="425" height="200" class="imgEntradas imgDesarrolloDestacado"/>
+		        </div>
+		    {% endwith %}
+			{% for item in items|slice:"0:2" %}
+		        <div class="entradaColTriple">
+		        	<img src="../media/img/imgTamanio2.jpg" width="200" height="150" class="imgEntradas imgDesarrollo"/>
+		            	<div class="contEntradaDesarrollos">
+		                    <p class="notaTituloDestacado">{{ item.title }}</p>
+
+		                    <p class="notaBajadaDestacado">{{ item.copete }}</p>
+		                    <p class="btnContinuar"><a href="{{ item.get_absolute_url }}">DESCARGAR <img src="../media/img/flechaAbajo.png" width="11" height="11" at="DESCARGAR ARCHIVO"/></a></p>
+		            	</div>
+		        </div>
+			{% endfor %}
+        </div>
+        <!---ACA TERMINA EL BLOKE DESARROLLOS ARENA--->
+        <!---ACA EMPIEZA EL BLOKE ALCANCE ARENA--->
+        <div id="blokSoluciones" class="colTriple">
+        	<div class="contTitulo"><h2><span>Alcances Arena</span></h2></div>
+			{% render_block 'alcances_arena' %}
+            </div>
+        </div>        	
+	{% endblock main %}
+

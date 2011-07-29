@@ -1,0 +1,44 @@
+{% extends 'djblog/base.html' %}
+{% load getblog %}
+{% load getsocialfeed %}
+{% load subscribetags %}
+
+{% block subheader %}
+            <div id="tituloSeccion">
+                <p class="tituloSeccion">Contacte a SIQAT</p>
+            </div>
+{% endblock %}
+
+{% block navbar %}
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/page/quienes-somos">Qui&eacute;nes somos</a></li>
+                <li><a href="/servicios/certificaciones">Servicios</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/novedades">Novedades</a></li>
+                <li><a href="/contact">Contacto</a></li>
+             </ul>
+{% endblock navbar %}
+
+{% block headerclass %}headerContacto{% endblock %}
+
+{% block titulo-seccion %}Contactese{% endblock%}
+
+{% block main %}
+	<div id="blogColIzq">
+		<h2>Formulario de Subscripci&oacute;n</h2>
+		
+		<div id="formConsultas">
+			<p>Muchas gracias por contactarse!</p>
+		</div>
+	</div>
+
+    <div id="blogColDer">
+		{% render_block 'sidebar-contacto' %}
+    </div>
+{% endblock main %}
+
+{% block columna-derecha %}
+	{% render_block 'sidebar-contacto' %}
+{% endblock %}
+

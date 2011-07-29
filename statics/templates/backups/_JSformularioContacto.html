@@ -1,0 +1,7 @@
+	$(function(){
+		$("#formContact").load('/contact/ #formConsultas',function(){
+			$.getScript('{{ config.MEDIA_URL }}js/jquery.formValidator.js');
+		});
+		
+	})
+

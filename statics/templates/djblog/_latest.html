@@ -1,0 +1,36 @@
+<div id="postDestacado">
+{% load getblog %}
+{% get_latest_blog_posts as posts  %}
+	{% with posts|first as post %}
+    <p class="blogFechaPost"><b>{{ post.publication_date|date:"j F, Y" }}</b></p>
+    <p class="blogTituloPost">
+		<a href="{{ post.get_absolute_url }}" class="linkTituloPost">{{ post.title }}</a>
+	</p>
+	{% with post.get_first_image as media %}
+    <img src="{{ media.content.url }}" width="273" height="167" alt="Hierro" class="imgListadoBlog"/>
+   	{% endwith %} 
+    <div class="linksListado">
+
+		<p class="blogLinksPost blogLinksListado">
+			<a href="{{ post.get_absolute_url }}#disqus_thread" data-disqus-identifier="{{ post.slug }}" class="linkRelPost">
+				Comentarios <img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt="Leer Mas" class="imgLeermas"/>
+			</a>
+		</p>
+        <div class="blogLinkSocialesListado">
+			<div class="linkTws" style="float:left;">
+				<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siqat.arkad1a.com.ar/{{ post.get_absolute_url }}" 
+					data-count="horizontal" data-via="siqat">Tweet</a>
+				<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			</div>
+			<iframe src="http://www.facebook.com/plugins/like.php?href=http://siqat.arkad1a.com.ar/{{ post.get_absolute_url }}&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;colorscheme=light&amp;height=21" 
+				scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+        </div>
+        <p class="blogTextoPost">
+			{{ post.preview_content }}
+		</p>
+        <p class="blogLinksPost">
+			<a href="{{ post.get_absolute_url }}" class="linkRelPost">Leer m&aacute;s <img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt="Leer Mas" class="imgLeermas"/></a>
+		</p> 
+    </div>
+</div>
+{% endwith %}

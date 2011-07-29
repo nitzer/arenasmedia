@@ -1,0 +1,51 @@
+{% load getsocialfeed %}
+
+<style>
+	.facebookfeed {
+		font-family:verdana;
+		font-size:11px;
+	}
+	.facebookfeed .fbtitle { font-family:verdana, sans-serif; font-size:15px; text-align:center; margin:10px 0px 10px 0px;}
+
+	.facebookfeed .fbimg { display:block; float:left; margin:3px; }
+
+	.facebookfeed .fblist {
+		list-style:none;
+		height:180px;
+		margin:0;
+		overflow:auto;
+		background:#fff;
+		color:#333;
+	}
+
+	.facebookfeed .fbitem { margin:3px;padding:0px;}
+
+	.facebookfeed .fbitem a { color:#777; }
+
+	.facebookfeed .fbdate { color:#CACACA; }
+
+</style>
+
+<!-- facebook feed -->
+<div id="contFaceboo" class="cajasColDer"> 
+	<div class="contTituloColDer"><p class="blogTituloColDer">Siqat en Facebook</p></div>
+	<div class="facebookfeed" style="background: #3B5998;color:#fff">
+		<div class="fblist">
+		    {% facebook_feed %}
+		    {% for i in facebookfeed %}
+			<div class="fbitem">
+				<div class="fbdesc">
+					<div class="fbimg">
+						<a href='http://facebook.com/profile.php?id={{ i.uid }}' target='_blank'><img src='{{ i.picture }}' /></a>
+					</div>
+					<a href='http://facebook.com/profile.php?id={{ i.uid }}' class='fblink' target='_blank'>{{ i.user }}</a>: <span>{{ i.message|urlizetrunc:'35' }}</span>
+				</div>
+				<br clear="all" />
+				<p class="fbdate">{{ i.created_time }}</p>
+			</div>
+		    {% endfor %}
+		</div>
+	</div>
+</div>
+<!-- end facebook feed -->
+

@@ -1,0 +1,50 @@
+{% load getblog %}
+{% get_latest_category_posts licencias-no-automaticas norecursive as licencias %}
+        <div id="blokLicencias">
+            <p class="tituloHome"><span class="tituloHomeGrande">LICENCIAS</span> NO AUTOM&Aacute;TICAS</p>
+			<div id="contLicenciasNoAutomaticas">
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cij"><img src="{{ config.MEDIA_URL }}img/lic/CIJ.jpg" title="CIJ" alt="CERTIFICADO DE IMPORTACION DE JUGUETES" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cip2"><img src="{{ config.MEDIA_URL }}img/lic/CIP2.jpg" title="CIP" alt="CERTIFICADO DE IMPORTACION DE PAPEL" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cic"><img src="{{ config.MEDIA_URL }}img/lic/CIC.jpg" title="CIC" alt="CERTIFICADO DE IMPORTACION DE CALZADO" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cip"><img src="{{ config.MEDIA_URL }}img/lic/CIP.jpg" title="CIP" alt="CERTIFICADO DE IMPORTACION DE PELOTAS" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/ciah"><img src="{{ config.MEDIA_URL }}img/lic/CIAH.jpg" title="CIAH" alt="CERTIFICADO DE IMPORTACION DE ARTICULOS PARA EL HOGAR" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cib"><img src="{{ config.MEDIA_URL }}img/lic/CIB.jpg" title="CIB" alt="CERTIFICADO DE IMPORTACION DE BICICLETAS" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cin"><img src="{{ config.MEDIA_URL }}img/lic/CIN.jpg" title="CIN" alt="CERTIFICADO DE IMPORTACION DE NEUMATICOS PARA BICICLETAS" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cim"><img src="{{ config.MEDIA_URL }}img/lic/CIM.jpg" title="CIM" alt="CERTIFICADO DE IMPORTACION DE MOTOCICLETAS" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cimd"><img src="{{ config.MEDIA_URL }}img/lic/CIMD.jpg" title="CIMD" alt="CERTIFICADO DE IMPORTACION DE MANUFACTURAS DIVERSAS" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cipt"><img src="{{ config.MEDIA_URL }}img/lic/CIPT.jpg" title="CIPT" alt="CERTIFICADO DE IMPORTACION DE PRODUCTOS TEXTILES" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cipm"><img src="{{ config.MEDIA_URL }}img/lic/CIPM.jpg" title="CIPM" alt="CERTIFICADO DE IMPORTACION DE PRODUCTOS METALURGICOS" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/ciht"><img src="{{ config.MEDIA_URL }}img/lic/CIHT.jpg" title="CIHT" alt="CERTIFICADO DE IMPORTACION DE HILADOS Y TEJIDOS"class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cineum"><img src="{{ config.MEDIA_URL }}img/lic/CIN2.jpg" title="CIN" alt="CERTIFICADO DE IMPORTACION DE NEUMATICOS" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cipv"><img src="{{ config.MEDIA_URL }}img/lic/CIPV.jpg" title="CIPV" alt="CERTIFICADO DE IMPORTACION DE PRODUCTOS VARIOS" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cita"><img src="{{ config.MEDIA_URL }}img/lic/CITA.jpg" title="CITA" alt="CERTIFICADO DE IMPORTACION DE TORNILLOS Y AFINES" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/ciapa"><img src="{{ config.MEDIA_URL }}img/lic/CIAPA.jpg" title="CIAPA" alt="CERTIFICADO DE IMPORTACION DE AUTOPARTES Y AFINES" class="imgLicenciasNo"/></a></div>
+				<div class="iconLicenNo"><a href="/licencias-no-automaticas/post/cipc"><img src="{{ config.MEDIA_URL }}img/lic/CIPC.jpg" title="CIAPA" alt="CERTIFICADO DE IMPORTACION DE PARTES DE CALZADO" class="imgLicenciasNo"/></a></div>
+			</div>
+        </div>
+
+		<script>
+		$(function(){
+			$(".iconLicenNo").simpletip({
+				fixed: true,
+				title: { content: 'Tooltip title', button: '.botonAzul' }, //Again, note the full selector string
+				position: 'bottom'
+			});
+
+			$('.iconLicenNo').bind( 'mouseover' , function(){
+				$('.tooltip').html(
+					'<p class="tituloBoxLicencias">' + $(this).find('img:first').attr('title') + '</p>'+
+					'<p class="bajadaBoxLicencias">' + $(this).find('img:first').attr('alt') + '</p>'+
+					'<p class="botonAzul"><a href="'+ $(this).find('a:first').attr('href') +'" class="mybutton">Leer M&aacute;s</a></p>'
+				);
+			});
+
+			$('.tooltip').unbind();
+			
+			$('.mybutton').bind( 'click' , function(){
+				document.location.href = $(this).attr('href');
+			});
+			
+
+		})
+		</script>

@@ -1,0 +1,209 @@
+{% load contacttags %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="generator" content=
+"HTML Tidy for Linux (vers 25 March 2009), see www.w3.org" />
+<meta http-equiv="Content-Type" content=
+"text/html; charset=us-ascii" />
+<title>Siqat - certificaciones</title>
+<link rel='stylesheet' type='text/css' href=
+"{{ config.MEDIA_URL }}css/siqat.css" />
+<meta name="title" lang="es" title="SIQAT Ingenieria de Calidad: Certificaciones de Importaci&oacute;n y Seguridad" />
+<meta name="keywords" lang="es" content="Siqat, Certificaciones, Certificaciones de Importaci&oacute;n, Certificaciones de Seguridad, Certificaciones de Fabricaci&oacute;n, Licencias No Autom&aacute;ticas, LNA, CIAH, Certificaciones de Importaci&oacute;n Art&iacute;culos para el Hogar, CIPT, Certificaciones de Importaci&oacute;n Productos Textiles, CIMD, Certificaciones de Importaci&oacute;n Manufacturas diversas, CIPV, Certificaciones de Importaci&oacute;n Productos Varios, CIHT, Certificaciones de Importaci&oacute;n Hilados y tejidos, CIC, Certificaciones de Importaci&oacute;n Calzado, CIP, Certificaciones de Importaci&oacute;n Papel, CIJ, Certificaciones de Importaci&oacute;n Juguetes, CIPM, Certificaciones de Importaci&oacute;n Productos Metalúos, CIP, Certificaciones de Importaci&oacute;n Pelotas, CIAPA, Certificaciones de Importaci&oacute;n Autopartes y afines, CIPC, Certificaciones de Importaci&oacute;n Partes de Calzado, CIM, Certificaciones de Importaci&oacute;n Motocicletas, CIN, Certificaciones de Importaci&oacute;n Neum&aacute;ticos para Bicicletas, CIN, Certificaciones de Importaci&oacute;n Neum&aacute;ticos, CIB, Certificaciones de Importaci&oacute;n Bicicletas, CITA, Certificaciones de Importaci&oacute;n Tornillos y Afines, Tramitaciones ante SENASA, Tramitaciones ante ANMAT, Certificaciones internacionales, Certificaci&oacute;n CE, Certificaci&oacute;n Comunidad Europea, Sistemas de Gesti&oacute;n de Calidad, ISO 9000, ISO 9001: 2008, Calificaci&oacute;n de proveedores, Inspecciones nacionales e internacionales, Inspecciones de Fabricas, Inspecciones Pre-Embarques, Ensayos previos de laboratorio, Certificaci&oacute;n de Seguridad El&eacute;ctrica, Eficiencia Energ&eacute;tica, INAL, ANMAT, Seguridad en Juguetes, Seguridad en Bicicletas, CHAS, CNC, Seguridad en Encendedores, Certificaci&oacute;n de Pilas y Bater&iacute;as, Seguridad en Acero" />
+<meta name="description" lang="es" content="SIQAT brinda servicios de asesoramiento y gesti&oacute;n a importadores y fabricantes, sobre las Certificaciones, Tramitaciones y Aprobaciones de los diferentes productos">
+</head>
+<body>
+{% load getblog %} {% load contacttags %} 
+<script type="text/javascript" language="javascript" charset="utf-8" src="{{ config.MEDIA_URL }}js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" language="javascript" charset="utf-8" src="{{ config.MEDIA_URL }}js/tooltip.js"></script>
+
+<!--[if IE 7]>
+        <link rel='stylesheet' type='text/css' href="{{ config.MEDIA_URL }}css/ie7.css" />
+        <![endif]-->
+<div id="sombra">
+<div id="content"><!--==HEADER!==-->
+<div id="header" class="headerServicios">
+<div id="botonera">
+<div id="logo"><a href="/"><img src=
+"{{ config.MEDIA_URL }}img/logo_home.png" width="199" height="66" alt=
+"Siqat" title="Siquat" /></a></div>
+<div id="botones">
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/page/quienes-somos">Qui&eacute;nes somos</a></li>
+<li class="seccionActual">Servicios</li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/novedades">Novedades</a></li>
+<li><a href="/contact">Contacto</a></li>
+</ul>
+</div>
+
+</div>
+<div id="tituloSeccion">
+<p class="tituloSeccion">Servicios</p>
+</div>
+</div>
+<!--== FIN HEADER!==--><!--== INICIO SERVICIOS!==-->
+<!--== INICIO BOTONERA SUPERIOR SERVICIOS==-->
+{% block botonera-servicios %}
+<div id="contBotoneraServicios">
+<div id="btnCertificaciones" class="btnServiciosActual"><a href=
+""></a>
+<p><span class="tituloHomeGrande">CERTIFICACIONES</span></p>
+</div>
+<div id="btnLicencias"><a href=""></a>
+<p class="tooltip" title="Licencias no automaticas"><span class="tituloHomeGrande">LICENCIAS</span> NO
+AUTOM&Aacute;TICAS</p>
+</div>
+<div id="btnOtras"><a href=""></a>
+<p><span class="tituloHomeGrande">OTROS</span> SERVICIOS</p>
+</div>
+</div>
+
+{% endblock %}
+<!--== CONTENEDOR SERVICIOS ==-->
+<div id="contServicios">
+	<div id="colIzqServicios">
+		<ul>
+			{% block certificados %}
+				{% get_latest_category_posts certificaciones norecursive as certificados %}
+				{% for certificado in certificados %}
+					<li id="{{ certificado.slug }}" class="certListItems"> <a href="{{ certificado.get_absolute_url }}#tituloSeccion">{{ certificado.title }}</a></li>
+				{% empty %}
+					<li><a href="{{ certificado.get_absolute_url }}">No hay certificados</a></li>
+				{% endfor %}
+			{% endblock certificados%}
+		</ul>
+	</div>
+    <div id="colDerServicios">
+    {% block botonera-media %}{% endblock %}
+    <div id="contenidoServicios" class="contCertificaciones"><img src="{{ config.MEDIA_URL }}img/servicios_flecha_certificaciones.png" width="8" height="21" alt="flechas" class="flechaCertificaciones" />
+
+{% block content %}
+
+	{% get_latest_category_posts certificaciones norecursive as certificados %}
+		{% with certificados|first as certificado %}
+		{% with certificado.get_first_image as media %}
+		{% if media %}<img src="{{ config.MEDIA_URL }}img/servicios_imagen_falsa.png" width="182" height="182" alt="Puzzle" class="imgServicios" /> {% endif %}
+		{% endwith %}
+			<p class="serviciosTituloTexto">{{ certificado.title }}</p>
+			<p class="serviciosBajada">{{ certificado.copete }}</p>
+			<p class="blogTextoPost">{{ certificado.content }}</p>
+		{% endwith %}
+{% endblock content %}
+
+</div>
+	
+	<form class="consultaForm" action="{% url contact_form %}" method="POST">
+		{% csrf_token %}
+		<p class="texts">
+			<label for="id_name">Nombre y apellido:</label>
+			{{ form.name }}
+		</p>
+
+		<p class="texts">
+		<label for="id_email">Email:</label>
+			{{ form.email }}
+		</p>
+
+		<p class="texts">
+			<label for="id_body">Consulta:</label>
+			{{ form.body }}
+		</p>
+		<div class="captcha">
+			<p>
+			<label for="id_body">Seguridad:</label>
+			{{ form.captcha }}
+			</p>
+			<br clear="all">
+		</div>
+		<p>
+			<label for="id_submit">&nbsp</label>
+			<input id="id_submit" class="botonAzulChico" type="submit" value="Enviar" />
+		</p>
+	</form>
+
+<!--
+<div id="formConsultas">
+<!--== INICIA EL FORM DE COMENTS==
+	<p class="tituloForm">CONSULTAS</p>
+	<div id="formLabels">
+	<p>Nombre y Apellido:</p>
+	<p>E-mail:</p>
+	<p>Comentario:</p>
+	</div>
+
+	<form class="comentariosForm">
+	<input type="text" />
+	<input type="text" /> 
+	<textarea cols="52" rows="7"></textarea>
+	<div class="botonAzulChico">Enviar &gt;</div>
+	</form>
+</div>
+<!--== FIN DEL FORM DE COMENTS==-->
+
+</div>
+</div>
+<!--== CONTENEDOR SERVICIOS ==--><!--== FIN SERVICIOS!==-->
+<!--== INICIA EL FOOTER!==-->
+<div id="footer"><img src="{{ config.MEDIA_URL }}img/logo_footer.png"
+width="130" height="82" alt="Siqat" title="Siqat" class=
+"logoFooter" />
+<div id="botonesFooter">
+	<ul>
+	<li><a href="/">Home</a></li>
+	<li><a href="/page/quienes-somos">Qui&eacute;nes somos</a></li>
+	<li class="seccionActual">Servicios</li>
+	<li><a href="/blog">Blog</a></li>
+	<li><a href="/novedades">Novedades</a></li>
+	<li><a href="/contact">Contacto</a></li>
+	</ul>
+</div>
+<div id="legales">
+<p>&Acirc;&copy; 2010 Siqat.com All rights reserved. | <a href="#"
+class="linkFooter">T&eacute;rminos y Condiciones</a></p>
+<p>Siqat Ingenieria de Calidad - Hip&oacute;lito Yrigoyen 615 4 "A"
+- Capital Federal -(5411)4342-2662 - <a href=
+"mailto:info@Siqat.com.ar" class=
+"linkFooter">info@Siqat.com.ar</a></p>
+</div>
+<div id="propaganda">
+<p>Powered by <a href="http://www.link-b.com" target="_blank"
+class="linkFooter">Link-b.com</a></p>
+</div>
+<br clear="all" /></div>
+<!--== FIN FOOTER!==--></div>
+</div>
+<div id="siguenos"><a href=
+"http://www.youtube.com/SiqatOnline"><img src=
+"{{ config.MEDIA_URL }}img/seguinos_youtube.png" width="32" height=
+"39" alt="Seguinos en Youtube" class="imgLink" /></a> <a href=
+"http://twitter.com/#!/SiqatOnline"><img src=
+"{{ config.MEDIA_URL }}img/seguinos_tw.png" width="32" height="39"
+alt="Seguinos en Twitter" class="imgLink" /></a> <a href=
+"http://www.facebook.com/pages/Siqat-Online/101582293251986"><img src="{{ config.MEDIA_URL }}img/seguinos_fb.png"
+width="32" height="30" alt="Seguinos en Facebook" class=
+"imgLink" /></a></div>
+<script type="text/javascript">
+//<![CDATA[
+{%block javascript %}   $(document).ready(function(){           $(".tab_content").hide();               $("ul.tabs li:first").addClass("active").show();                $(".tab_content:first").show();                 $("ul.tabs li").click(function()                   {                $("ul.tabs li").removeClass("active");                  $(this).addClass("active");                     $(".tab_content").hide();                       var activeTab = $(this).find("a").attr("href");                 $(activeTab).fadeIn();                  return false;               });     });{% endblock %}
+//]]>
+</script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21038836-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

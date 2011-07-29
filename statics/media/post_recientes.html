@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>prueba</title>
+<link rel='stylesheet' type='text/css' href="css/siqat.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+</head>
+
+<body>
+<div id="sombra">
+    <div id="content">
+
+      <div id="ultimoPostHome">
+                <p class="blogFechaPost">TUESDAY, NOVEMBER 9, 2010</p>
+                <p class="blogTituloPost"><a href="#" class="linkTituloPost">Acero para estructuras de hormigón y metálicas de construcción</a></p>
+                <img src="img/home_ultimo_post.jpg" width="569" height="85" alt="Ultimo Post" class="imgUltimoPost"/>
+                <p class="blogTextoPost">En amont de la création de votre site Internet, il est essentiel pour id agency de comprendre votre activité et vos attentes pour mieux vous conseiller. Nous sommes persuadés que cela passe avant tout par une écoute attentive et la découverte de votre métier. </p>
+                <p class="blogLinksPost"><a href="#" class="linkRelPost">leer m&aacute;s <img src="img/blog_flecha_leermas.jpg" width="7" height="12" alt="Leer Mas" class="imgLeermas"/></a></p> 
+                </div>
+                <div id="postRecientestHome">
+                    <div class="cajasPostRecientes" style="background:url(img/postRecientes.jpg) no-repeat #FFF;">
+               	    <div class="iconoDestacado"></div>
+                        <div class="bajadaPostRecientes">
+                            <p>> Acero para estructuras de hormigón...</p>
+                        </div>    
+                    </div>
+                    
+	                    <div class="cajasPostRecientes" style="background:url(img/postRecientes.jpg) no-repeat #FFF;">
+                        <div class="iconoDestacado" style="display:none;"></div>
+                        <div class="bajadaPostRecientes" style="display:none;">
+                            <p>> Acero para estructuras de hormigón...</p>
+                        </div>    
+                    </div>
+                    
+                    <div class="cajasPostRecientes" style="background:url(img/postRecientes.jpg) no-repeat #FFF;">
+                    	
+                        <div class="iconoDestacado" style="display:none;"></div>
+                        <div class="bajadaPostRecientes" style="display:none;">
+                            <p>> Acero para estructuras de hormigón...</p>
+                        </div>    
+                    </div>
+                    
+                    <div class="cajasPostRecientes" style="background:url(img/postRecientes.jpg) no-repeat #FFF;">
+                    	
+                        <div class="iconoDestacado" style="display:none;"></div>
+                        <div class="bajadaPostRecientes" style="display:none;">
+                            <p>> Acero para estructuras de hormigón...</p>
+                        </div>    
+                    </div>
+						</div>
+                </div>
+        </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(function(){
+        $('.cajasPostRecientes').hover(
+			function () {
+				$('#postRecientestHome').find('.iconoDestacado, .bajadaPostRecientes').remove();
+				$(this).prepend(
+					'<div class="iconoDestacado"></div><div class="bajadaPostRecientes"><p class="desperado"> Acero para estructuras de hormigón...</p></div>'
+				);
+				
+			},
+			function () {
+				
+			}
+		);
+
+	})
+})
+</script>
+</body>
+</html>

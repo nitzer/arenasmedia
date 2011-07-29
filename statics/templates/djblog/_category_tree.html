@@ -1,0 +1,27 @@
+<!-- category tree -->
+<div class="title-sidebar oh c19 pd5b ma5b bss bw1 bdb">
+    <h2 class="fl">Categor&iacute;as</h2>
+</div>
+<div class="ma10b pd10 bg20 c16 bss bw1" id="categories">
+
+    {% if categories %}
+    <ul id="category_tree">
+    {% for cat in categories %}
+        <li class="ma10v">
+
+            <a href="{{ cat.get_absolute_url }}" title="{{ cat.name }}" class="c19">{{ cat.name }}</a>
+
+            {% if cat.category_set.all %}
+            <ul class="pd15l">
+            {% for subcat in cat.category_set.all %}
+            <li class="ma10v"><a href="{{ subcat.get_absolute_url }}" title="{{ subcat.name }}" class="c19">{{ subcat.name }}</a></li>
+            {% endfor %}
+            </ul>
+            {% endif %}
+
+        </li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+
+</div>

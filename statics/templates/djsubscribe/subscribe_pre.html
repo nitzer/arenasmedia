@@ -1,0 +1,87 @@
+{% extends 'djblog/base.html' %}
+{% load getblog %}
+{% load getsocialfeed %}
+{% load subscribetags %}
+
+{% block subheader %}
+            <div id="tituloSeccion">
+                <p class="tituloSeccion">Contacte a SIQAT</p>
+            </div>
+{% endblock %}
+
+{% block navbar %}
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/page/quienes-somos">Qui&eacute;nes somos</a></li>
+                <li><a href="/servicios/certificaciones">Servicios</a></li>
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/novedades">Novedades</a></li>
+                <li><a href="/contact">Contacto</a></li>
+             </ul>
+{% endblock navbar %}
+
+{% block headerclass %}headerContacto{% endblock %}
+
+{% block titulo-seccion %}Suscripci&oacute;n{% endblock%}
+
+{% block main %}
+	<div id="blogColIzq">
+		<h2>Formulario de Suscripci&oacute;n</h2>
+		
+		<div id="formConsultas">
+			<form action="/djsubscribe/sent/" method="post">{% csrf_token %}
+				<p>
+					<label>Nombre y Apellido:</label>
+					<input type="text" name="nombres" />
+				</p>
+				<p>
+					<label>Empresa:</label>
+					<input type="text" name="empresa" />
+				</p>
+				<p>
+					<label>Email:</label>
+					<input type="text" name="email" value="{{ request.POST.email }}" />
+				</p>
+				<p>
+					<label>Categor&iacute;a:</label>
+						<select type="select" name="categoria">
+							<option>Todos</option>
+							<option>Seguridad Eléctrica</option>
+							<option>Eficiencia Energética</option>
+							<option>Juguetes</option>
+							<option>Pilas y Baterías</option>
+							<option>Bicicletas</option>
+							<option>Cámaras y cubiertas</option>
+							<option>INAL</option>
+							<option>Tecnología Médica  ANMAT</option>
+							<option>Equipos a gas</option>
+							<option>Encendedores</option>
+							<option>Equipos de Telecomunicación CNC</option>
+							<option>Aceros</option>
+							<option>Calzado</option>
+							<option>Elementos de proteccion personal EPP</option>
+							<option>Textil</option>
+							<option>Tipificaciones</option>
+							<option>Metrología legal</option>
+							<option>Certificado de homologación de autopartes de seguridad CHAS</option>
+							<option>Licencias de importación no automáticas</option>
+							<option>Sistema de Gestión de Calidad</option>
+							<option>Buenas prácticas de fabricacion de mercado CE</option>
+							<option>SENASA</option>
+						</select>
+				</p>
+
+				<input type="submit" value="Enviar" class="botonAzulChico"/>
+			</form>
+		</div>
+	</div>
+
+    <div id="blogColDer">
+		{% render_block 'sidebar-contacto' %}
+    </div>
+{% endblock main %}
+
+{% block columna-derecha %}
+	{% render_block 'sidebar-contacto' %}
+{% endblock %}
+

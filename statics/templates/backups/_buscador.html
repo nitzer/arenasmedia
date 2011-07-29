@@ -1,0 +1,9 @@
+				<!-- search form -->
+                <div id="contBuscador" class="cajasColDer">
+					<form action="{% url djblog_search %}" method="GET">
+					{#% csrf_token %#}
+					<input type="text" name="q" class="buscador" />
+					<input type="submit" class="botonAzulChico" value="Buscar" />
+					</form>
+                </div>
+

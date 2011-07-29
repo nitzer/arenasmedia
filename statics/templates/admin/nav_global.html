@@ -1,0 +1,30 @@
+{% load i18n %}
+
+{% if get_app_list %}
+<ul id="nav">
+    <li class="level0 nav-parent dashboard">
+    <a href="/admin/"><span>{% trans 'Dashborad' %}</span></a>
+    </li>
+    {% for app in get_app_list %}
+    <li class="{{ app.name|slugify }}-administration">
+    <a href="{{ app.app_url }}" style="background-image:url('{{ config.MEDIA_URL }}img/admin/{{ app.name|slugify }}.png');"><span>{{ app.name }}</span></a>
+        {% if app.models %}
+        <ul class="level0">
+            {% for model in app.models %}
+            {% if model.perms.change %}<li class="clear {% if forloop.last %}last{% endif %}"><a href="{{ model.admin_url }}"><span>{{ model.name }}</span></a>&nbsp;{% if model.perms.add %}<a href="{{ model.admin_url }}add/" class="addlink" style="float:right">&nbsp;</a>{% endif %}
+            </li>{% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </li>
+    {% endfor %}
+    <li style="float:none; margin:o; padding:0; border:0; background:none" class="clear"></li>
+</ul>
+<script type="text/javascript">
+    $(document).ready(function(){
+            $("#nav > li").hover(function(){
+                $(this).toggleClass("over");
+            });
+    });
+</script>
+{% endif %}

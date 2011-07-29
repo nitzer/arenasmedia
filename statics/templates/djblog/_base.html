@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load getblog %}
+{% load getsocialfeed %}
+{% load subscribetags %}
+
+{% block title %}Siqat{% endblock title %}
+
+{% block bottom-header %}{% endblock %}
+
+{% block galeria-home %}{% endblock %}
+
+{% block extra-head %}
+{{ block.super }}
+	<link rel="stylesheet" href="{{ config.MEDIA_URL }}css/jquery.tweet.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+	
+	<script type="text/javascript" src="{{ config.MEDIA_URL }}js/jquery.slideviewer.1.1.js"></script>
+	<script type="text/javascript" src="{{ config.MEDIA_URL }}js/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="{{ config.MEDIA_URL }}js/jquery.tweet.js"></script>
+
+{% endblock %}
+
+{% block javascript %}
+
+	{% get_blog_tags as tags %}
+		$(function(){
+			var conf = "tcolor=0x333333&tcolor2=0x333333&hicolor=0x333333&tspeed=100&distr=true&mode=tags&tagcloud=<tags>";
+			{% for tag in tags %}
+			conf += "<a href=\'http://{{ site.domain }}{{ tag.get_absolute_url }}\' title=\'{{ tag.name }}\' style=\'font-size:"+({{ tag.weight }}+15)+"pt\'>{{ tag.name }}</a>";
+			{% endfor %}
+			conf += "</tags>";
+			$('#contTags').html('<embed width="260" height="250" flashvars="'+conf+'" allowscriptaccess="always" quality="high" bgcolor="#ffffff" name="tagcloudflash" id="tagcloudflash" src="{{ config.MEDIA_URL }}tagcloud.swf?r='+String(Math.random()).split('.')[1]+'" type="application/x-shockwave-flash">');
+
+			$(".tweet").tweet({
+		      join_text: "auto",
+		      username: "SiqatOnline",
+		      avatar_size: 30,
+		      count: 5,
+		      auto_join_text_default: "dijo,", 
+		      auto_join_text_ed: "we",
+		      auto_join_text_ing: "estubo",
+		      auto_join_text_reply: "contesto",
+		      auto_join_text_url: "di&oacute; un vistazo",
+		      loading_text: "loading tweets..."
+		    });
+		});
+
+{% endblock %}
+
+{% block headerclass %}headerBlog{% endblock %}
+
+{% block titulo-seccion %}Blog{% endblock%}
+
+{% block navbar %}
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/page/quienes-somos">Qui&eacute;nes somos</a></li>
+    <li><a href="/servicios/certificaciones">Servicios</a></li>
+    <li class="seccionActual"><a href="/blog">Blog</a></li>
+    <li><a href="/novedades">Novedades</a></li>
+    <li><a href="/contact">Contacto</a></li>
+ </ul>
+{% endblock navbar %}
+
+{% block footer-nav %}
+                <li><a href="/">Home</a></li>
+                <li><a href="/page/quienes-somos">Qui&eacute;nes somos</a></li>
+                <li><a href="/servicios/certificaciones">Servicios</a></li>
+                <li class="seccionActual">Blog</li>
+                <li><a href="/novedades">Novedades</a></li>
+                <li><a href="/contact">Contacto</a></li>
+{% endblock %}
+
+{% block subheader %}
+            <div id="tituloSeccion">
+                <p class="tituloSeccion">Blog</p>
+            </div>
+{% endblock subheader %}
+
+{% block main %}
+
+	{% block premain %}{% endblock premain %}
+
+        <div id="contBlog">
+
+            <div id="blogColIzq">
+				{% block content %}{% endblock %}
+			</div>
+
+
+
+            <div id="blogColDer">
+			{% block columna-derecha %}
+				{% include '_buscador.html' %}
+
+				{% get_subscribe_form %}
+
+				{% include '_tags.html' %}
+
+				{% include '_suscribite.html' %}
+                
+				{% include '_facebook.html' %}
+
+				{% include '_twitter.html' %}
+
+				{% render_block 'slideshare' %}
+
+				{% include '_categorias.html' %}
+
+			{% endblock columna-derecha %}
+            </div>
+
+        </div>
+{% endblock main %}
+
+

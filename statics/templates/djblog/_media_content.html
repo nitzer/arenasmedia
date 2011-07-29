@@ -1,0 +1,55 @@
+{% for media in object.get_media_content %}
+{% if forloop.first %}
+<script>$(document).ready(function(){
+    if($("#video").size()) flowplayer("video", "/media/flowplayer-3.2.5.swf", {clip:{autoPlay: false}});
+    if($("#audio_mpeg").size()) flowplayer("audio_mpeg", "/media/flowplayer-3.2.5.swf", {clip:{autoPlay: false}});
+    });
+</script>
+
+<div id="media_content" class="cl">
+    <ul class="oh">
+{% endif %}
+        {% ifequal media.mimetype 'video/x-flv' %}
+        <li id="media_content-{{ forloop.counter }}" class="ct_{{ media.get_header }}">
+        <p>{{ media.title }}</p>
+        <a 
+            href="{{ media.content.url }}" 
+            id="{{ media.get_header }}" 
+            style="display:block;margin:10px auto;width:502px;height:411px">
+        </a>
+        </li>
+        {% else %}
+            {% ifequal media.get_header 'audio' %}
+            <li id="media_content-{{ forloop.counter }}" class="ct_{{ media.get_header }}">
+            <p>{{ media.title }}</p>
+            <a 
+                href="{{ media.content.url }}" 
+                id="{{ media.get_header }}" 
+                style="display:block;margin:10px auto;width:502px;height:300px">
+            </a>
+            </li>
+            {% else %}
+                {% if 'image' in media.get_header and object.get_first_image != media %}
+            <li id="media_content-{{ forloop.counter }}" class="ct_{{ media.get_header }} fl ma10">
+            <a href="{{ media.content.url }}" alt="{{ media.description }}" title="{{ media.title }}"><img src="{{ media.thumbnail.url }}" alt="{{ media.description }}" title="{{ media.title }}"/></a>
+            </li>
+                {% endif %}
+            {% endifequal %}
+        {% endifequal %}
+{% if forloop.last %}
+    </ul>
+</div>
+{% endif %}
+{% endfor %}
+
+<script>
+    $(function(){
+        $('.ct_image a').lightBox({
+            imageLoading: '{{ config.MEDIA_URL }}img/lightbox/lightbox-ico-loading.gif',	
+            imageBtnPrev:'{{ config.MEDIA_URL }}img/lightbox/lightbox-btn-prev.gif',		
+            imageBtnNext: '{{ config.MEDIA_URL }}img/lightbox/lightbox-btn-next.gif',		
+            imageBtnClose: '{{ config.MEDIA_URL }}img/lightbox/lightbox-btn-close.gif',	
+            imageBlank: '{{ config.MEDIA_URL }}img/lightbox/lightbox-blank.gif'
+        });
+    });
+</script>

@@ -1,0 +1,60 @@
+{% extends 'djblog/base.html' %}
+
+{% block title %}{{ object.title }}{% endblock %}
+{% block meta-title %}{{ object.title }}{% endblock %}
+{% block meta-keywords %}{{ object.meta_keywords }}{% endblock %}
+{% block meta-description %}{{ object.meta_description }}{% endblock %}
+
+{% block extra-head %}
+
+{{ block.super }}
+<link rel="alternate" type="application/rss+xml" title="Blog RSS Feed" href="" />
+<script type="text/javascript" src="{{ config.MEDIA_URL }}js/jquery.lightbox-0.5.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ config.MEDIA_URL }}css/jquery.lightbox-0.5.css" media="screen" />
+{% endblock %}
+
+{% block content %}
+
+<div id="blogPost">
+	<p class="blogFechaPost">{{ object.publication_date|date:"j F, Y" }}</p>
+	<p class="blogTituloPost"><a href="#" class="linkTituloPost">{{ object.title }}</a></p>
+
+    {% with object.get_first_image as media %}
+    {% if media.content %}
+		<img src="{{ media.content.url }}" width="273" height="167" alt="Hierro" class="imgPost" title="{{ media.title }}" alt="{{ media.description }}"/>
+    {% endif %}
+    {% endwith %}
+
+	<div class="blogTextoPost">
+		{{ object.content|safe }}
+	</div>
+
+	{% if not media.content %}
+		{% for media in object.get_media_content %}
+		<a href="{{ media.content.url }}" class="linkRelPost">Descargar <img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt="Leer Mas" class="imgLeermas"/></a>
+		{% endfor %}
+	{% endif %}
+
+
+	<div class="blogLinks">
+        <div class="blogLinkSocialesListado">
+
+			<div class="linkTws" style="float:left;">
+			<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siqat.arkad1a.com.ar/{{ post.get_absolute_url }}" 
+				data-count="horizontal" data-via="siqat">Tweet</a>
+			<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			</div>
+
+			<iframe src="http://www.facebook.com/plugins/like.php?href=http://siqat.arkad1a.com.ar/{{ post.get_absolute_url }}&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;colorscheme=light&amp;height=21" 
+				scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+
+        </div>
+        <p class="blogLinksPost"><a href="#" class="linkRelPost"><a href="{{ object.get_absolute_url }}#disqus_thread" data-disqus-identifier="{{ object.slug }}" class="linkRelPost">Leer m&aacute;s <img src="{{ config.MEDIA_URL }}img/blog_flecha_leermas.png" width="7" height="12" alt="Leer Mas" class="imgLeermas"/></a> </p> 
+		{% include 'djblog/_comments.html' %}
+		</p>
+	</div>
+</div>
+
+{% endblock %}
+
+

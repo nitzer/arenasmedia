@@ -1,0 +1,63 @@
+{% extends 'djblog/base.html' %}
+
+{% block title %}{{ object.title }}{% endblock %}
+{% block meta-keywords %}{{ object.meta_keywords }}{% endblock %}
+{% block meta-description %}{{ object.meta_description }}{% endblock %}
+{% block extra-head %}
+{{ block.super }}
+
+<link rel="alternate" type="application/rss+xml" title="Blog RSS Feed" href="" />
+<script type="text/javascript" src="{{ config.MEDIA_URL }}js/jquery.lightbox-0.5.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ config.MEDIA_URL }}css/jquery.lightbox-0.5.css" media="screen" />
+{% endblock %}
+
+{#% block mainclass %}main2colr2 bg18{% endblock %#}
+
+{% block content %}
+<div id="post_{{ object.pk }}" class="article post oh">
+
+    {% if not object.is_page %}{% include '_social_share.html' %}{% endif %}
+
+    <div class="title-bar oh bss bw1 c19">
+        <div class="title-bar oh fl"><h2 class="fl">{{ object.title }}</h2></div>
+    </div>
+    
+    <h5 class="ma15v">{{ object.copete }}</h5>
+    <div class="content">
+        <div class="fl">{{ object.content|safe }}</div>
+    </div>
+
+    {% include 'djblog/_media_content.html' %}
+
+    {% if not object.is_page %}
+    <p class="pd10 tr"><a href="{% if object.get_root_category %}{{ object.get_root_category.get_absolute_url }}{% else %}{% url djblog_latest %}{% endif %}" 
+        class="anteriores">Artículos anteriores</a></p>
+    {% endif %}
+
+    {% include 'djblog/_comments.html' %}
+
+</div>
+<script>
+    $(function(){
+        $(".post img.fl").each(function(){
+            if(650 >= $(this).width() & 400 < $(this).width()){ $(this).css({'margin-right': (650-$(this).width())})}
+        });
+    });
+</script>
+{% endblock %}
+
+{#% block colrightclass %}colr2{% endblock %#}
+{% block colright %}
+{% block search_form %}
+{% include 'djblog/_search_form.html' %}
+{% endblock search_form %}
+
+
+{% block suscribe_form %}
+{% include '_suscribe_form.html' %}
+{% endblock suscribe_form %}
+
+
+<!-- tag cloud -->
+<div class="ma10b" id="tag_cloud"></div>
+{% endblock %}
